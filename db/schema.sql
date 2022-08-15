@@ -4,20 +4,20 @@ CREATE DATABASE firefly;
 USE firefly;
 
 CREATE TABLE department (
-    id INT PRIMARY KEY, 
-    depname VARCHAR(30)
+    id INT PRIMARY KEY NOT NULL, 
+    depname VARCHAR(30) NOT NULL
 );
 CREATE TABLE crewrole (
-    id INT PRIMARY KEY, 
-    title VARCHAR(30),
-    salary DECIMAL,
+    id INT PRIMARY KEY NOT NULL, 
+    title VARCHAR(30) NOT NULL,
+    salary DECIMAL NOT NULL,
     department_id INT 
 );
 CREATE TABLE employee (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY NOT NULL,
     first_name VARCHAR(30),
-    last_name VARCHAR(30),
-    role_id INT,
+    last_name VARCHAR(30) NOT NULL,
+    role_id INT NOT NULL,
     manager_id INT
 );
 
@@ -51,4 +51,6 @@ INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
 	    (108, 'River', 'Tam', 307, 104),
 	    (109, 'Shepherd', 'Book', 307, 104);
 
-SELECT * FROM crewrole;
+-- SELECT * FROM employee;
+-- SELECT * FROM employee WHERE id = 107;
+-- SELECT * FROM employee WHERE last_name = 'Washburne';

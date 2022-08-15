@@ -3,24 +3,23 @@ const app = express();
 
 const mysql = require('mysql');
 const PORT = process.env.PORT || 3333;
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'pass',
-    // database: 'firefly'
-});
+// const db = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'pass',
+//     // database: 'firefly'
+// });
 
 // Create Connection
 app.listen('3333', () => {
     console.log (`I'm listening on ${PORT}`);
 });
-
-// const api_routes = require('./routes/api_routes');
+const api_routes = require('./routes/api_routes');
+app.use('/api', api_routes);
 
 // routes are important and create doors to your application and page. 
 // this is the root route. 
 
-// app.use('/api', api_routes);
 
 // const path = require('path');
 
