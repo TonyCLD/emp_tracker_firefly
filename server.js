@@ -1,42 +1,53 @@
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 3333;
-// this route is so we can pull in the page of routes in the route folder. 
-const api_routes = require('./routes/api_routes');
-// routes are important and create doors to your application and page. 
-// this is the root route. 
-app.use('/api', api_routes);
 
-// const { response } = require('express');
 const mysql = require('mysql');
-const path = require('path');
-
-app.get('/', (request, response) => {
-    response.send('works!');
+const PORT = process.env.PORT || 3333;
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'pass',
+    // database: 'firefly'
 });
-
 
 // Create Connection
 app.listen('3333', () => {
     console.log (`I'm listening on ${PORT}`);
 });
 
-// const db = mysql.createConnection({
-//     host: 'localhost',
-//     user: 'root',
-//     password: 'pass',
-//     database: 'firefly'
+// const api_routes = require('./routes/api_routes');
+
+// routes are important and create doors to your application and page. 
+// this is the root route. 
+
+// app.use('/api', api_routes);
+
+// const path = require('path');
+
+
+// app.get('/insert', (request, response) => {
+//     db.query(
+//         'INSERT INTO role (id INT PRIMARY KEY, title VARCHAR(30), salary DECIMAL) VALUES (301, "Captain", 12000.00)', (err, result) => {
+//             if (err) {
+//                 console.log(err);
+//             }
+//             response.send(result);
+//         }
+//     );
+
 // });
 
-// // Connecting
-// db.connect((err)=> {
+// Connecting
+// db.connect((err) => {
 //     if(err){
 //         throw err;
 //     }
 //     console.log('MySql connected')
 // });
 
-// // Create Database Firefly
+
+
+// Create Database Firefly
 // app.get('/createdb', (request, response) => {   
 //     let sql = 'CREATE DATABASE firefly';
 //     db.query(sql, (err, result) => {

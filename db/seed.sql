@@ -2,7 +2,7 @@ INSERT INTO department ('id', 'name')
     VALUES ('201', 'Command'),
     VALUES ('202', 'Medical'),
     VALUES ('203', 'Maintenance'),
-    VALUES ('204', 'Civilian')
+    VALUES ('204', 'Civilian');
 
 INSERT INTO role ('id', 'title', 'salary', 'department_id')  
 	VALUES ('301', 'Captain', '12000.00', '201'),
@@ -12,7 +12,7 @@ INSERT INTO role ('id', 'title', 'salary', 'department_id')
 	VALUES ('304', 'Doctor', '10000.00', '202'),
 	VALUES ('306', 'Chief Engineer', '12000.00', '203'),
 	VALUES ('307', 'Passenger', '6000.00', '204')
-	VALUES ('308', 'Psychiatrists', '10000.00', '202'),
+	VALUES ('308', 'Psychiatrists', '10000.00', '202');
 
 INSERT INTO employee ('id', 'first_name', 'last_name', 'role_id', 'manager_id')
 	VALUES ('101', 'Malcome', 'Reynolds', '301', 'null'),
@@ -23,4 +23,4 @@ INSERT INTO employee ('id', 'first_name', 'last_name', 'role_id', 'manager_id')
 	VALUES ('106', 'Kaylee', 'Frye', '306', '101'),
 	VALUES ('107', 'Inara', 'Serra', '307', 'null'),
 	VALUES ('108', 'River', 'Tam', '307', '104'),
-	VALUES ('109', 'Shepherd', 'Book', '307', '104')
+	VALUES ('109', 'Shepherd', 'Book', '307', '104');
