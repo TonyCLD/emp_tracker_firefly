@@ -23,9 +23,9 @@ INSERT INTO employee (emp_id, first_name, last_name, role_id, manager_id)
         (101, 'Malcome', 'Reynolds', 301, null),
 	    (102,'Zoe', 'Washburne', 302, 101),
 	    (103,'Hoban', 'Washburne', 303, 102),
-	    (104,'Simon', 'Tam', 304, 101),
-	    (105,'Jayne', 'Cobb', 305, 102),
+	    (104,'Simon', 'Tam', 305, 101),
+	    (105,'Jayne', 'Cobb', 304, 102),
 	    (106,'Kaylee', 'Frye', 306, 101),
 	    (107,'Inara', 'Serra', 307, null),
 	    (108,'River', 'Tam', 307, 104),
-	    (109,'Shepherd', 'Book', 307, 104);
+	    (109,'Shepherd', 'Book', 308, 104);
