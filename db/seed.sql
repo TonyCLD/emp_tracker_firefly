@@ -1,4 +1,4 @@
-USE owpggkyq543hb11k;
+USE firefly;
 
 INSERT INTO department (department_id, depname) 
     VALUES 

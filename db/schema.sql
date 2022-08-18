@@ -1,7 +1,7 @@
-DROP DATABASE owpggkyq543hb11k;
-CREATE DATABASE owpggkyq543hb11k;
+DROP DATABASE firefly;
+CREATE DATABASE firefly;
 
-USE owpggkyq543hb11k;
+USE firefly;
 
 CREATE TABLE department (
     department_id INT PRIMARY KEY NOT NULL, 
