@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const inquirer = require('inquirer');
+// const inquirer = require('inquirer');
 const mysql = require('mysql');
 const PORT = process.env.PORT || 3333;
 // const db = mysql.createConnection({
@@ -16,6 +16,17 @@ app.listen('3333', () => {
 });
 const api_routes = require('./routes/api_routes');
 app.use('/api', api_routes);
+
+// var figlet = require('figlet');
+// figlet('Firefly Employement', function(err, data) {
+//     if (err) {
+//         console.log('Something went wrong...');
+//         console.dir(err);
+//         return;
+//     }
+//     console.log(data)
+// });
+
 
 // routes are important and create doors to your application and page. 
 // this is the root route. 
