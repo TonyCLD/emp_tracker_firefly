@@ -1,10 +1,10 @@
 USE firefly;
 
-SELECT department_id AS "ID", depname AS "Dept. Name" FROM department;
-
-
-
-
---  View all roles
---           I am presented with the job title, role id, the department that role 
---           belongs to, and the salary for that role
+SELECT
+    title AS "Rank",
+    role_id AS "Rank ID",
+    department.depname AS "Dept. Name",
+    salary AS "Salary" 
+    FROM crewrole
+        JOIN department
+        ON crewrole.department_id = department.department_id;
