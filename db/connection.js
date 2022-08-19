@@ -1,4 +1,4 @@
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
 const is_on_heroku = process.env.NODE_ENV === 'production';
 const connection_data = is_on_heroku ? {
     host: 'n4m3x5ti89xl6czh.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
