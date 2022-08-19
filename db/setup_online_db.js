@@ -12,5 +12,9 @@ const db = mysql.createPool(connection_data);
 
 fs.promises.readFile(path.join(__dirname, 'seed_heroku.sql'), 'utf8')
     .then(sql => {
-        db.query(sql);
+        db.query(sql)
+            .then(() => {
+                console.log('Heroku DB seeded successfully!');
+            })
+            .catch(err => console.log(err));
     });
