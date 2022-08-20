@@ -2,7 +2,35 @@ const inquirer = require('inquirer');
 const connection = require('./db/connection');
 require('console.table');
 
-console.log('welcome to employer');
+console.log(`
+┌──────────────────────────────────────────────┐ '||''''|                     .|'; '||'                                              
+│  @@@  nn@...    ...    xnnn@nn.              │  ||  .    ''                 ||    ||                                               
+│   @#@@@...--.............#xxnnn@n            │  ||''|    ||  '||''| .|''|, '||'   ||  '||  ||'                                     
+|     ##....#.--....-.........x....@           │  ||       ||   ||    ||..||  ||    ||   '|..||                                      
+│  @@@@...x##@@---------  .... ...             │ .||.     .||. .||.   .|...  .||.  .||.      ||                                      
+│      ... #-@@@nn-----nnnx@.n                 │                                          ,  |'                                      
+│         ##-@@@@@n--nnn@@@@.n      n          │                                           ''                                        
+│          n---@@@@@@n@@--...@@----nn..        │ '||''''|                    '||'                                              ||    
+│    x-- .n------- x@@x--   @@@@@@@@n....      │  ||   .                      ||                                               ||    
+│ @@ nnnn.----.....###x--x#@@@ xxx@xn.....     │  ||'''|  '||),,(|,  '||''|,  ||  .|''|, '||  ||' '||),,(|,  .|''|, '||''|,  ''||''  
+│  @@###nnn--..           ###xxx##@@n   ...    │  ||       || || ||   ||  ||  ||  ||  ||  '|..||   || || ||  ||..||  ||  ||    ||    
+│   @@@@x#nn-...          @@@@@@-@-@@@@  ..    │ .||....| .||    ||.  ||..|' .||. '|..|'      ||  .||    ||. '|...  .||  ||.   |..' 
+│      @@@#####.               @@@-----##...   │                      ||                   ,  |'                                     
+│          ##n                       @-----.   │                     .||                    ''                                       
+└──────────────────────────────────────────────┘
+
+ `);
+
+//  first_name, last_name, role_id, manager_id
+
+function addEmp() {
+    inquirer.prompt([{
+        type: 'input',
+        name: 'employeeName',
+        message: 'Add employee first and last name, role ID and Manager ID',
+}])
+
+};
 
 function callAllEmployees() {
     const sql = `
@@ -24,6 +52,7 @@ function callAllEmployees() {
     connection.query(sql)
         .then((result) => {
             console.table(result[0]);
+            promptUser();
         })   
 };
 
@@ -41,23 +70,18 @@ function callAllRoles() {
     connection.query(sql)
         .then((result) => {
             console.table(result[0]);
+            promptUser();
         })   
 };
 
-function callAllRoles() {
+function callAllDepts() {
     const sql = `
-    SELECT
-    title AS "Rank",
-    role_id AS "Rank ID",
-    department.depname AS "Dept. Name",
-    salary AS "Salary" 
-    FROM crewrole
-        JOIN department
-        ON crewrole.department_id = department.department_id;
+    SELECT department_id AS "ID", depname AS "Dept. Name" FROM department;
     `;
     connection.query(sql)
         .then((result) => {
             console.table(result[0]);
+            promptUser();
         })   
 };
 
@@ -78,29 +102,35 @@ function callAllEmpByManager() {
     connection.query(sql)
         .then((result) => {
             console.table(result[0]);
+            promptUser();
         })   
 };
 
+const promptUser = () => {
+
 inquirer
   .prompt([{
-    message: "Would you like to view:",
+    message: "Would you like to do?",
     type: 'list',
-    choices: ['Show all departments', 'Show all roles', 'Show all employees', 'Show all employees by manager' ],
+    choices: ['View all departments', 'View all roles', 'View all employees', 'View all employees by manager', 'Add department' ],
     name: 'choice'    
     }])
   .then((answers) => {
     // Use user feedback for... whatever!!
-    if (answers.choice === 'Show all employees') {
+    if (answers.choice === 'View all employees') {
         callAllEmployees()
     }  ;  
-    if (answers.choice === 'Show all roles') {
+    if (answers.choice === 'View all roles') {
         callAllRoles()
     }  ;  
-    if (answers.choice === 'Show all departments') {
+    if (answers.choice === 'View all departments') {
         callAllDepts()
     }  ;  
-    if (answers.choice === 'Show all employees by manager') {
+    if (answers.choice === 'View all employees by manager') {
         callAllEmpByManager()
+    }  ;  
+    if (answers.choice === 'Add department') {
+        addDepartment()
     }  ;  
 
 })
@@ -111,3 +141,21 @@ inquirer
       // Something else went wrong
     }
   });
+};
+
+const addDepartment = () => {
+    inquirer
+      .prompt([
+        {
+          name: 'newDepartment',
+          type: 'input',
+          message: 'What\'s the new Department\'s name?',
+        }
+      ])
+      .then((answer) => {
+        let sql = `INSERT INTO department (depname) VALUES (?)`;
+          callAllDepts();
+        });
+      };
+
+promptUser();
