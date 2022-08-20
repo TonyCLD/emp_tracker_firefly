@@ -112,7 +112,7 @@ inquirer
   .prompt([{
     message: "Would you like to do?",
     type: 'list',
-    choices: ['View all departments', 'View all roles', 'View all employees', 'View all employees by manager', 'Add department' ],
+    choices: ['View all departments', 'View all roles', 'View all employees', 'View all employees by manager', 'Add department', 'Exit' ],
     name: 'choice'    
     }])
   .then((answers) => {
@@ -132,6 +132,12 @@ inquirer
     if (answers.choice === 'Add department') {
         addDepartment()
     }  ;  
+    if (answers.choice === 'Add crew role') {
+      addRole()
+    }  ;
+    if (answers.choice === 'Exit') {
+      connection.end();
+    }  
 
 })
   .catch((error) => {
@@ -157,5 +163,25 @@ const addDepartment = () => {
           callAllDepts();
         });
       };
+
+const addRole = () => {
+  inquirer
+    .prompt([
+      {
+        name: 'newRole',
+        type: 'input',
+        message: 'What\'s the new crew title, salary and department ID? Example: (`Pilot`, 10000.00, 201)',
+      }
+      ])
+        .then((answer) => {
+          let sql = `INSERT INTO crewrole (title, salary, department_id) VALUES (?)`;
+          callAllRoles();
+    });
+};
+
+
+
+      
+
 
 promptUser();
